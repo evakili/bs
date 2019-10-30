@@ -3,11 +3,12 @@
 std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int value)
 {
     while (last > first) {
-        if (last - 1 == first)
-            if (arr[first] != value)
+        auto len = last - first;
+
+        if (len == 1 && arr[first] != value)
                 return -1;
 
-        auto middle = first + (last - 1 - first) / 2;
+        auto middle = first + (len - 1) / 2;
 
         if (arr[middle] == value)
             return middle;
