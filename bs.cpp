@@ -27,10 +27,10 @@ position_t lower_bound(const int* arr, position_t first, position_t last, int va
     return first;
 }
 
-position_t binary_search(const int* arr, position_t len, int value)
+position_t binary_search(const int* arr, position_t last, int value)
 {
-    auto first = lower_bound(arr, 0, len, value);
-    return arr[first] == value ? first : len;
+    auto first = lower_bound(arr, 0, last, value);
+    return arr[first] == value ? first : last;
 }
 
 int main() {
