@@ -13,11 +13,9 @@ std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int val
 
     if (arr[middle] == value)
         return middle;
-
-    if (arr[middle] < value)
+    else if (arr[middle] < value)
         first = middle + 1;
-
-    if (arr[middle] > value)
+    else
         last = middle - 1;
 
     return binary_search(arr, first, last, value);
