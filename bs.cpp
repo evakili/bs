@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-std::size_t lower_bound(int* arr, std::size_t first, std::size_t last, int value)
+std::size_t lower_bound(const int* arr, std::size_t first, std::size_t last, int value)
 {
     while (last != first) {
         auto middle = first + (last - first - 1) / 2;
@@ -14,7 +14,7 @@ std::size_t lower_bound(int* arr, std::size_t first, std::size_t last, int value
     return first;
 }
 
-std::size_t binary_search(int* arr, std::size_t len, int value)
+std::size_t binary_search(const int* arr, std::size_t len, int value)
 {
     auto first = lower_bound(arr, 0, len, value);
     return arr[first] == value ? first : len;
