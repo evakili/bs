@@ -1,18 +1,19 @@
 ﻿#include <iostream>
 
+using position_t = std::size_t;
 using difference_t = std::size_t;
 
-difference_t distance(std::size_t first, std::size_t last)
+difference_t distance(position_t first, position_t last)
 {
     return last - first - 1;
 }
 
-std::size_t next(std::size_t pos, difference_t n = 1)
+position_t next(position_t pos, difference_t n = 1)
 {
     return pos + n;
 }
 
-std::size_t lower_bound(const int* arr, std::size_t first, std::size_t last, int value)
+position_t lower_bound(const int* arr, position_t first, position_t last, int value)
 {
     while (last != first) {
         auto middle = next(first, distance(first, last) / 2);
@@ -26,7 +27,7 @@ std::size_t lower_bound(const int* arr, std::size_t first, std::size_t last, int
     return first;
 }
 
-std::size_t binary_search(const int* arr, std::size_t len, int value)
+position_t binary_search(const int* arr, position_t len, int value)
 {
     auto first = lower_bound(arr, 0, len, value);
     return arr[first] == value ? first : len;
