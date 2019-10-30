@@ -11,12 +11,13 @@ std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int val
             last = middle;
     }
     
-    return arr[first] == value ? first : -1;
+    return first;
 }
 
 std::size_t binary_search(int* arr, std::size_t len, int value)
 {
-    return binary_search(arr, 0, len, value);
+    auto first = binary_search(arr, 0, len, value);
+    return arr[first] == value ? first : len;
 }
 
 int main() {
