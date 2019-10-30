@@ -5,13 +5,18 @@ std::size_t distance(std::size_t first, std::size_t last)
     return last - first - 1;
 }
 
+std::size_t next(std::size_t pos, std::size_t n = 1)
+{
+    return pos + n;
+}
+
 std::size_t lower_bound(const int* arr, std::size_t first, std::size_t last, int value)
 {
     while (last != first) {
-        auto middle = first + distance(first, last) / 2;
+        auto middle = next(first, distance(first, last) / 2);
 
         if (arr[middle] < value)
-            first = middle + 1;
+            first = next(middle);
         else
             last = middle;
     }
