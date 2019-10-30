@@ -2,23 +2,23 @@
 
 std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int value)
 {
-    if (last < first)
-        return -1;
-
-    if (last == first)
-        if (arr[first] != value)
+    while (true) {
+        if (last < first)
             return -1;
 
-    auto middle = first + (last - first) / 2;
+        if (last == first)
+            if (arr[first] != value)
+                return -1;
 
-    if (arr[middle] == value)
-        return middle;
-    else if (arr[middle] < value)
-        first = middle + 1;
-    else
-        last = middle - 1;
+        auto middle = first + (last - first) / 2;
 
-    return binary_search(arr, first, last, value);
+        if (arr[middle] == value)
+            return middle;
+        else if (arr[middle] < value)
+            first = middle + 1;
+        else
+            last = middle - 1;
+    }
 }
 
 std::size_t binary_search(int* arr, std::size_t len, int value)
