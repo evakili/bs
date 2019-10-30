@@ -5,14 +5,13 @@ std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int val
     while (last != first) {
         auto middle = first + (last - first - 1) / 2;
 
-        if (arr[middle] == value)
-            return middle;
-        else if (arr[middle] < value)
+        if (arr[middle] < value)
             first = middle + 1;
         else
             last = middle;
     }
-    return -1;
+    
+    return arr[first] == value ? first : -1;
 }
 
 std::size_t binary_search(int* arr, std::size_t len, int value)
