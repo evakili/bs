@@ -3,9 +3,7 @@
 std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int value)
 {
     while (last != first) {
-        auto len = last - first;
-
-        auto middle = first + (len - 1) / 2;
+        auto middle = first + (last - first - 1) / 2;
 
         if (arr[middle] == value)
             return middle;
