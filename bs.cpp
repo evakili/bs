@@ -27,22 +27,22 @@ position_t lower_bound(position_t first, position_t last, int value)
     return first;
 }
 
-position_t binary_search(int* arr, std::size_t last, int value)
+position_t binary_search(position_t first, position_t last, int value)
 {
-    auto first = lower_bound(arr, &arr[last], value);
-    return *first == value ? first : &arr[last];
+    first = lower_bound(first, last, value);
+    return *first == value ? first : last;
 }
 
 int main() {
     int arr[] = { 1, 3, 4, 6, 7, 9, 12, 54, 200, 1000 };
     std::size_t len = sizeof(arr) / sizeof(int);
 
-    std::cout << binary_search(arr, len, 7) << '\n';
-    std::cout << binary_search(arr, len, 54) << '\n';
-    std::cout << binary_search(arr, len, 3) << '\n';
-    std::cout << binary_search(arr, len, 1) << '\n';
-    std::cout << binary_search(arr, len, 1000) << '\n';
-    std::cout << binary_search(arr, len, 25) << '\n';
-    std::cout << binary_search(arr, len, 1020) << '\n';
-    std::cout << binary_search(arr, len, -1) << '\n';
+    std::cout << binary_search(arr, arr + len, 7) << '\n';
+    std::cout << binary_search(arr, arr + len, 54) << '\n';
+    std::cout << binary_search(arr, arr + len, 3) << '\n';
+    std::cout << binary_search(arr, arr + len, 1) << '\n';
+    std::cout << binary_search(arr, arr + len, 1000) << '\n';
+    std::cout << binary_search(arr, arr + len, 25) << '\n';
+    std::cout << binary_search(arr, arr + len, 1020) << '\n';
+    std::cout << binary_search(arr, arr + len, -1) << '\n';
 }
