@@ -2,7 +2,7 @@
 
 std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int value)
 {
-    while (last - 1 >= first) {
+    while (last > first) {
         if (last - 1 == first)
             if (arr[first] != value)
                 return -1;
