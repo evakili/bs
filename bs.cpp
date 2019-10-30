@@ -15,12 +15,12 @@ std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int val
         return middle;
 
     if (arr[middle] < value)
-        return binary_search(arr, middle + 1, last, value);
+        first = middle + 1;
 
     if (arr[middle] > value)
-        return binary_search(arr, first, middle - 1, value);
+        last = middle - 1;
 
-    return -1;
+    return binary_search(arr, first, last, value);
 }
 
 std::size_t binary_search(int* arr, std::size_t len, int value)
