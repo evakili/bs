@@ -1,9 +1,14 @@
 ﻿#include <iostream>
 
+std::size_t distance(std::size_t first, std::size_t last)
+{
+    return last - first - 1;
+}
+
 std::size_t lower_bound(const int* arr, std::size_t first, std::size_t last, int value)
 {
     while (last != first) {
-        auto middle = first + (last - first - 1) / 2;
+        auto middle = first + distance(first, last) / 2;
 
         if (arr[middle] < value)
             first = middle + 1;
