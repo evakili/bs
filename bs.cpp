@@ -9,7 +9,7 @@ std::size_t binary_search(int* arr, std::size_t first, std::size_t last, int val
         if (arr[first] != value)
             return -1;
 
-    auto middle = (first + last) / 2;
+    auto middle = first + (last - first) / 2;
 
     if (arr[middle] == value)
         return middle;
