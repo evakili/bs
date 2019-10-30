@@ -1,20 +1,21 @@
 ﻿#include <iostream>
 
-using value_t = int;
-using position_t = value_t*;
 using difference_t = std::size_t;
 
-difference_t distance(position_t first, position_t last)
+template<typename T>
+difference_t distance(T* first, T* last)
 {
     return last - first - 1;
 }
 
-position_t next(position_t pos, difference_t n = 1)
+template<typename T>
+T* next(T* pos, difference_t n = 1)
 {
     return pos + n;
 }
 
-position_t lower_bound(position_t first, position_t last, const value_t& value)
+template<typename T>
+T* lower_bound(T* first, T* last, const T& value)
 {
     while (last != first) {
         auto middle = next(first, distance(first, last) / 2);
@@ -28,22 +29,40 @@ position_t lower_bound(position_t first, position_t last, const value_t& value)
     return first;
 }
 
-position_t binary_search(position_t first, position_t last, const value_t& value)
+template<typename T>
+T* binary_search(T* first, T* last, const T& value)
 {
     first = lower_bound(first, last, value);
     return *first == value ? first : last;
 }
 
 int main() {
-    value_t arr[] = { 1, 3, 4, 6, 7, 9, 12, 54, 200, 1000 };
-    std::size_t len = sizeof(arr) / sizeof(value_t);
+    std::cout << "ints:\n";
+    {
+        int arr[] = { 1, 3, 4, 6, 7, 9, 12, 54, 200, 1000 };
+        std::size_t len = sizeof(arr) / sizeof(arr[0]);
 
-    std::cout << binary_search(arr, arr + len, 7) << '\n';
-    std::cout << binary_search(arr, arr + len, 54) << '\n';
-    std::cout << binary_search(arr, arr + len, 3) << '\n';
-    std::cout << binary_search(arr, arr + len, 1) << '\n';
-    std::cout << binary_search(arr, arr + len, 1000) << '\n';
-    std::cout << binary_search(arr, arr + len, 25) << '\n';
-    std::cout << binary_search(arr, arr + len, 1020) << '\n';
-    std::cout << binary_search(arr, arr + len, -1) << '\n';
-}
+        std::cout << binary_search(arr, arr + len, 7) << '\n';
+        std::cout << binary_search(arr, arr + len, 54) << '\n';
+        std::cout << binary_search(arr, arr + len, 3) << '\n';
+        std::cout << binary_search(arr, arr + len, 1) << '\n';
+        std::cout << binary_search(arr, arr + len, 1000) << '\n';
+        std::cout << binary_search(arr, arr + len, 25) << '\n';
+        std::cout << binary_search(arr, arr + len, 1020) << '\n';
+        std::cout << binary_search(arr, arr + len, -1) << '\n';
+    }
+    std::cout << "doubles:\n";
+    {
+        double arr[] = { 1., 3., 4., 6., 7., 9., 12., 54., 200., 1000. };
+        std::size_t len = sizeof(arr) / sizeof(arr[0]);
+
+        std::cout << binary_search(arr, arr + len, 7.) << '\n';
+        std::cout << binary_search(arr, arr + len, 54.) << '\n';
+        std::cout << binary_search(arr, arr + len, 3.) << '\n';
+        std::cout << binary_search(arr, arr + len, 1.) << '\n';
+        std::cout << binary_search(arr, arr + len, 1000.) << '\n';
+        std::cout << binary_search(arr, arr + len, 25.) << '\n';
+        std::cout << binary_search(arr, arr + len, 1020.) << '\n';
+        std::cout << binary_search(arr, arr + len, -1.) << '\n';
+    }
+}    
