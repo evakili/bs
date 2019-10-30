@@ -2,20 +2,20 @@
 
 using difference_t = std::size_t;
 
-template<typename T>
-difference_t distance(T* first, T* last)
+template<typename Pos>
+difference_t distance(Pos first, Pos last)
 {
     return last - first - 1;
 }
 
-template<typename T>
-T* next(T* pos, difference_t n = 1)
+template<typename Pos>
+Pos next(Pos pos, difference_t n = 1)
 {
     return pos + n;
 }
 
-template<typename T>
-T* lower_bound(T* first, T* last, const T& value)
+template<typename T, typename Pos>
+Pos lower_bound(Pos first, Pos last, const T& value)
 {
     while (last != first) {
         auto middle = next(first, distance(first, last) / 2);
@@ -29,8 +29,8 @@ T* lower_bound(T* first, T* last, const T& value)
     return first;
 }
 
-template<typename T>
-T* binary_search(T* first, T* last, const T& value)
+template<typename T, typename Pos>
+Pos binary_search(Pos first, Pos last, const T& value)
 {
     first = lower_bound(first, last, value);
     return *first == value ? first : last;
