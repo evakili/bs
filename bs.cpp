@@ -1,6 +1,11 @@
 ﻿#include <iostream>
 
-using difference_t = std::size_t;
+template<typename Pos>
+struct pos_traits
+{
+    using iterator_type = Pos;
+    using difference_type = decltype(iterator_type{} - iterator_type{});
+};
 
 template<typename T>
 struct less_than {
@@ -17,13 +22,13 @@ struct greater_than {
 };
 
 template<typename Pos>
-difference_t distance(Pos first, Pos last)
+typename pos_traits<Pos>::difference_type distance(Pos first, Pos last)
 {
     return last - first - 1;
 }
 
 template<typename Pos>
-Pos next(Pos pos, difference_t n = 1)
+Pos next(Pos pos, typename pos_traits<Pos>::difference_type n = { 1 })
 {
     return pos + n;
 }
